@@ -1,1 +1,9 @@
-Controller for this page: <span>{{controllerName}}</span>
+<p>
+  Controller for this page: <span>{{controllerName}}</span>
+</p>
+<p data-ng-show="mixinControllerNames.length">
+  Mixins: <span data-ng-repeat="name in mixinControllerNames">{{name}} </span>
+</p>
+<p data-ng-show="mixinControllerNames.length">
+  Controller inherited mixin prototype functions: <span>{{mixinPrototypeFunctionsInherited()}}</span>
+</p>

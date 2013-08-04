@@ -22,6 +22,14 @@
         controller: 'inheritPrototypicallyController',
         templateUrl: '/partial/generic.html'
       })
+      .when('/mixinByInjector', {
+        controller: 'mixinByInjectorController',
+        templateUrl: '/partial/generic.html'
+      })
+      .when('/mixinWithPrototypicalInheritance', {
+        controller: 'mixinWithPrototypicalInheritanceController',
+        templateUrl: '/partial/generic.html'
+      })
       .otherwise({
         redirectTo: '/home'
       });

@@ -1,11 +1,20 @@
 /*global
   angular: false
 */
+/**
+ * @fileOverview
+ * A child controller that inherits from multiple parents via prototypical
+ * inheritance for the main parent and then the addition of a mixin.
+ */
 
 (function () {
   'use strict';
   var inheritance = angular.module('inheritance');
 
+  /**
+   * A child controller that inherits from multiple parents via prototypical
+   * inheritance for the main parent and then the addition of a mixin.
+   */
   function MixinWithPrototypicalInheritanceController($scope) {
     // We can avoid passing long argument lists explicitly by suitably ordering
     // the injected dependencies. This is pleasant when the number of services
@@ -16,6 +25,7 @@
     // dependences in the method signature.
     inheritance.BaseMixinControllerConstructor.call(this, $scope);
   }
+  // See /js/app.js for the definition of inheritance.inherits().
   inheritance.inherits(MixinWithPrototypicalInheritanceController, inheritance.InheritPrototypicallyControllerConstructor);
   var p = MixinWithPrototypicalInheritanceController.prototype;
 

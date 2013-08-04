@@ -1,11 +1,20 @@
 /*global
   angular: false
 */
+/**
+ * @fileOverview
+ * A child controller that inherits from multiple parents via the $injector
+ * method.
+ */
 
 (function () {
   'use strict';
   var inheritance = angular.module('inheritance');
 
+  /**
+   * A child controller that inherits from multiple parents via the $injector
+   * method.
+   */
   function MixinByInjectorController($injector, $scope) {
     var self = this;
     // Override a parent controller function. We have to do this before calling

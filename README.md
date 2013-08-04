@@ -63,7 +63,7 @@ Mixins work in the same way as inheritance:
 
 In summary:
 
-  * All dependencies must be passed explicitly the $injector.invoke(), or else test code will break because injected mocks will be ignored by the parent class. The parent will load the non-mock instances for anything not explicitly set in $injector.invoke().
+  * All dependencies must be passed explicitly to $injector.invoke(), or else test code will break because injected mocks will be ignored by the parent class. The parent will load the non-mock instances for anything not explicitly set in $injector.invoke().
   * Unlike prototypical inheritance, parents must explicitly permit overriding.
   * A mixin works in exactly the same way as inheritance.
   * You can't define functionality in the controller constructor prototype. That is ignored by $injector.invoke(). You must define functions inside the constructor body, as shown above.
@@ -75,8 +75,8 @@ To enable standard-issue Javascript prototypical inheritance we should define an
 inherits() function somewhere easily accessible:
 
     /**
-     * A clone of the Node.js inherits() function. This will require support
-     * for the ES5 Object.create() method.
+     * A clone of the Node.js util.inherits() function. This will require
+     * browser support for the ES5 Object.create() method.
      *
      * @param {Function} ctor
      *   The child constructor.
@@ -145,5 +145,11 @@ constructor and coping over its prototype functions.
 
   * This method cannot be mixed with the $injector method, as $injector.invoke() does not copy over prototype functionality from parent to child.
   * With suitable structuring of dependency parameter order there is no need to explicitly pass injected dependencies.
-  * Mixins have to be done by hand. E.g. call() the constructor function and clone prototype properties.
-  * This method requires support for Object.create(), such as via es5-sham.js in older browsers.
+  * Mixins are somewhat graceless: call() the constructor function and clone prototype properties.
+  * This method requires browser support for Object.create(), such as via es5-sham.js in older browsers.
+
+Directive Controller Inheritance
+--------------------------------
+
+All of the notes above apply equally to inheritance of controllers associated
+with directives rather than pages.

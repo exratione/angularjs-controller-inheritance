@@ -14,12 +14,12 @@ pages but is fairly similar in overall form.
 There are a couple of approaches you might take in this situation to maximize
 code reuse and clarity:
 
-  * Move functionality into services, where it can be appopriately factored.
+  * Move functionality into services, where it can be appropriately factored.
   * Aggressively carve up the pages into directives and aim for directive reuse.
   * Create an inheritance hierarchy of page controllers and place common functionality in ancestor controllers.
 
 All of these are valid approaches, each more or less useful than the others in
-some circumstances, and can be mixed and matched to suite.
+some circumstances, and can be mixed and matched to suit.
 
 Here we're going to look at methods of creating controller hierarchies.
 

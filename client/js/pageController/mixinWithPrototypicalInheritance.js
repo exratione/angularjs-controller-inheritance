@@ -29,8 +29,14 @@
   inheritance.inherits(MixinWithPrototypicalInheritanceController, inheritance.InheritPrototypicallyControllerConstructor);
   var p = MixinWithPrototypicalInheritanceController.prototype;
 
-  // Copy in the mixin prototype properties.
-  angular.extend(p, inheritance.BaseMixinControllerConstructor.prototype);
+  // Add the mixin prototype functionality to the ChildController prototype,
+  // provided it doesn't already exist - i.e. is overridden.
+  angular.forEach(inheritance.BaseMixinControllerConstructor.prototype, function (value, name) {
+    if (p[name] === undefined) {
+      p[name] = value;
+    }
+  });
+
 
   /**
    * Override a parent method.

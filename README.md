@@ -121,10 +121,10 @@ An example:
     angular.inherits(ChildController, ParentController);
     /**
      * Override the parent function.
-     * @see ParentController#prototype
+     * @see ParentController#decorateScope
      */
     ChildController.prototype.decorateScope = function () {
-      $scope.decorator = 24;
+      this.$scope.decorator = 24;
     }
 
 Mixins can be created in a number of ways. For example, by calling the mixin
@@ -140,8 +140,13 @@ constructor and coping over its prototype functions.
       MixinController.call(this, $scope);
     }
     angular.inherits(ChildController, ParentController);
-    // Add the mixin prototype functionality to the ChildController prototype.
-    angular.extend(ChildController.prototype, MixinController.prototype);
+    // Add the mixin prototype functionality to the ChildController prototype,
+    // provided it doesn't already exist - i.e. is overridden.
+    angular.forEach(MixinController.prototype, function (value, name) {
+      if (ChildController.prototype[name] === undefined) {
+        ChildController.prototype[name] = value;
+      }
+    });
 
   * This method cannot be mixed with the $injector method, as $injector.invoke() does not copy over prototype functionality from parent to child.
   * With suitable structuring of dependency parameter order there is no need to explicitly pass injected dependencies.
